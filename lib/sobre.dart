@@ -17,9 +17,12 @@ class _SobreState extends State<Sobre> {
           child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Icon(
-                Icons.ac_unit_sharp,
-                size: 100.0,
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Icon(
+                  Icons.ac_unit_sharp,
+                  size: 100.0,
+                ),
               ),
               Expanded(
                   child: Text(
