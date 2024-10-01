@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lddm/cadastro.dart';
+import 'package:lddm/metas.dart';
+import 'package:lddm/sobre.dart';
 
 void main() => runApp(const InicioApp());
 
@@ -25,9 +28,9 @@ class _InicioState extends State<Inicio> {
   int _index = 0;
   static const List<Widget> _telas = <Widget>[
     Text("Home"),
-    Text("metas"),
-    Text("Cadastro"),
-    Text("Sobre"),
+    Meta(),
+    Cadastro(),
+    Sobre(),
   ];
 
   void onTabTapped(int index) {
