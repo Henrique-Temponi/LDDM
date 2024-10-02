@@ -11,22 +11,25 @@ class Meta extends StatefulWidget {
 class _MetaState extends State<Meta> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(20),
-      children: const <CustomMetaListItem>[
-        CustomMetaListItem(
-            titulo: "Estudar Geografia",
-            descricao:
-                "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem ",
-            data: "10/10/204",
-            iconBody: Icons.remove_red_eye),
-        CustomMetaListItem(
-            titulo: "Estudar Geografia",
-            descricao:
-                "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem ",
-            data: "10/10/204",
-            iconBody: Icons.remove_red_eye)
-      ],
-    );
+    return SizedBox(
+        height: 500,
+        width: 600,
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: const <CustomMetaListItem>[
+            CustomMetaListItem(
+                titulo: "Estudar Geografia",
+                descricao:
+                    "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem ",
+                data: "10/10/204",
+                iconBody: Icons.remove_red_eye),
+            CustomMetaListItem(
+                titulo: "Estudar Geografia",
+                descricao:
+                    "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem ",
+                data: "10/10/204",
+                iconBody: Icons.remove_red_eye)
+          ],
+        ));
   }
 }

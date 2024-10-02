@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
       children: <Widget>[
         const Text("Bem vindo de volta"),
         SizedBox(
-          height: 400,
+          height: 500,
           width: 600,
           child: ListView(
             padding: const EdgeInsets.all(20),
@@ -32,7 +32,19 @@ class _HomeState extends State<Home> {
                   descricao:
                       "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem ",
                   data: "10/10/204",
-                  iconBody: Icons.remove_red_eye)
+                  iconBody: Icons.remove_red_eye),
+              CustomMetaListItem(
+                  titulo: "Estudar Geografia",
+                  descricao:
+                      "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem ",
+                  data: "10/10/204",
+                  iconBody: Icons.remove_red_eye),
+              CustomMetaListItem(
+                  titulo: "Estudar Geografia",
+                  descricao:
+                      "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem ",
+                  data: "10/10/204",
+                  iconBody: Icons.remove_red_eye),
             ],
           ),
         )
