@@ -10,12 +10,9 @@ class Cadastro extends StatefulWidget {
 class _CadastroState extends State<Cadastro> {
   @override
   Widget build(BuildContext context) {
-    //Limpar os metodos ate coluna
-    return DefaultTextStyle.merge(
-        child: Container(
-      padding: const EdgeInsets.all(20),
-      child:
-          Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
         const Center(child: Text("Tela de cadastro")),
         const Padding(
             padding: EdgeInsets.all(20),
@@ -39,7 +36,7 @@ class _CadastroState extends State<Cadastro> {
               print("Ok");
             },
             child: const Text("Entrar"))
-      ]),
-    ));
+      ],
+    );
   }
 }
