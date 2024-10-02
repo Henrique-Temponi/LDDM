@@ -13,7 +13,7 @@ class _SobreState extends State<Sobre> {
     return Column(
       children: <Widget>[
         Container(
-          decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+          // decoration: BoxDecoration(border: Border.all(color: Colors.black)),
           child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
