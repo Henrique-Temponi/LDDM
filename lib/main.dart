@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lddm/cadastro.dart';
+import 'package:lddm/home.dart';
 import 'package:lddm/metas.dart';
 import 'package:lddm/sobre.dart';
+import 'CustomMetaListItem.dart';
 
 void main() => runApp(const InicioApp());
 
@@ -27,7 +29,7 @@ class Inicio extends StatefulWidget {
 class _InicioState extends State<Inicio> {
   int _index = 0;
   static const List<Widget> _telas = <Widget>[
-    Text("Home"),
+    Home(),
     Meta(),
     Cadastro(),
     Sobre(),
