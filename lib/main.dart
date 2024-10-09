@@ -34,6 +34,7 @@ class _InicioState extends State<Inicio> {
     Meta(),
     Cadastro(),
     Sobre(),
+    Home(),
   ];
 
   void onTabTapped(int index) {
@@ -45,34 +46,54 @@ class _InicioState extends State<Inicio> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("WorthStudy"),
-      ),
-      body: _telas[_index],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _index,
-        unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.yellow,
-        onTap: onTabTapped,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Inicio",
-              backgroundColor: Color.fromARGB(255, 208, 223, 9)),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.network_check),
-              label: "Metas",
-              backgroundColor: Color.fromARGB(255, 212, 39, 8)),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Cadastro",
-              backgroundColor: Color.fromARGB(255, 35, 156, 5)),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.report),
-              label: "Sobre",
-              backgroundColor: Color.fromARGB(255, 6, 50, 194))
-        ],
-      ),
-    );
+        appBar: AppBar(
+          title: const Center(child: Text("WorthStudy")),
+          backgroundColor: Colors.red,
+          shadowColor: Theme.of(context).colorScheme.shadow,
+        ),
+        body: _telas[_index],
+        bottomNavigationBar: Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+            color: Colors.red,
+          ),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.circular(10.0),
+            ),
+            child: BottomNavigationBar(
+              currentIndex: _index,
+              unselectedItemColor: Colors.white,
+              selectedItemColor: Colors.yellow,
+              onTap: onTabTapped,
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.home),
+                    label: "Inicio",
+                    backgroundColor: Color.fromARGB(255, 208, 223, 9)),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.track_changes),
+                    label: "Metas",
+                    backgroundColor: Color.fromARGB(255, 212, 39, 8)),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.add_circle),
+                    label: "Adicionar Meta",
+                    backgroundColor: Color.fromARGB(255, 35, 156, 5)),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.schedule),
+                    label: "Pomodoro",
+                    backgroundColor: Color.fromARGB(255, 35, 156, 5)),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.person),
+                    label: "Perfil",
+                    backgroundColor: Color.fromARGB(255, 6, 50, 194))
+              ],
+            ),
+          ),
+        ));
   }
 }
