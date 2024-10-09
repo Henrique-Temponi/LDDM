@@ -25,20 +25,17 @@ class _CadastroState extends State<Cadastro> {
           ),
           const Padding(
               padding: EdgeInsets.all(8.0),
-              child: Expanded(
-                  child: TextField(
+              child: TextField(
                 decoration: InputDecoration(
                     border: OutlineInputBorder(), labelText: "Usario"),
-              ))),
+              )),
           const Padding(
               padding: EdgeInsets.all(8.0),
-              child: SizedBox(
-                  width: 400,
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: "Senha"),
-                  ))),
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(), labelText: "Senha"),
+              )),
           ElevatedButton(
               onPressed: () {
                 print("Ok");

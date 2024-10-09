@@ -25,27 +25,22 @@ class _AdicionarMetaState extends State<AdicionarMeta> {
           ),
           const Padding(
               padding: EdgeInsets.all(8.0),
-              child: Expanded(
-                  child: TextField(
+              child: TextField(
                 decoration: InputDecoration(
                     border: OutlineInputBorder(), labelText: "Nome da meta"),
-              ))),
+              )),
           const Padding(
               padding: EdgeInsets.all(8.0),
-              child: SizedBox(
-                  width: 400,
-                  child: TextField(
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: "Descricao"),
-                  ))),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(), labelText: "Descricao"),
+              )),
           const Padding(
               padding: EdgeInsets.all(8.0),
-              child: SizedBox(
-                  width: 400,
-                  child: TextField(
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: "Data"),
-                  ))),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(), labelText: "Data"),
+              )),
           ElevatedButton(
               onPressed: () {
                 print("Ok");

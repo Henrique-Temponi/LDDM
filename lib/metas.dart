@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lddm/editar_meta.dart';
 import 'card_item.dart';
 
 class Meta extends StatefulWidget {
@@ -13,50 +14,50 @@ class _MetaState extends State<Meta> {
     CardItem(
       title: 'Estudar Geografia',
       date: '2024-10-08',
-      icon: Icons.abc,
-      description: 'Description for Event 1.',
+      icon: Icons.remove_red_eye,
+      description: 'Revisar capitais e continentes.',
     ),
     CardItem(
-      title: 'Event 2',
+      title: 'Ler Capítulo de Matemática',
       date: '2024-10-09',
-      icon: Icons.event,
-      description: 'Description for Event 2.',
+      icon: Icons.remove_red_eye,
+      description: 'Ler o Capítulo 5 e resolver exercícios.',
     ),
     CardItem(
-      title: 'Event 3',
+      title: 'Preparar Apresentação de História',
       date: '2024-10-10',
-      icon: Icons.event,
-      description: 'Description for Event 3.',
+      icon: Icons.remove_red_eye,
+      description: 'Preparar slides sobre a Revolução Industrial.',
     ),
     CardItem(
-      title: 'Event 3',
-      date: '2024-10-10',
-      icon: Icons.event,
-      description: 'Description for Event 3.',
+      title: 'Praticar Português',
+      date: '2024-10-11',
+      icon: Icons.remove_red_eye,
+      description: 'Fazer exercícios de conjugação de verbos.',
     ),
     CardItem(
-      title: 'Event 3',
-      date: '2024-10-10',
-      icon: Icons.event,
-      description: 'Description for Event 3.',
+      title: 'Revisar Química',
+      date: '2024-10-12',
+      icon: Icons.remove_red_eye,
+      description: 'Estudar ligações químicas e suas propriedades.',
     ),
     CardItem(
-      title: 'Event 3',
-      date: '2024-10-10',
-      icon: Icons.event,
-      description: 'Description for Event 3.',
+      title: 'Trabalhar em Projeto de Artes',
+      date: '2024-10-13',
+      icon: Icons.remove_red_eye,
+      description: 'Criar uma obra inspirada em Van Gogh.',
     ),
     CardItem(
-      title: 'Event 3',
-      date: '2024-10-10',
-      icon: Icons.event,
-      description: 'Description for Event 3.',
+      title: 'Estudar Biologia',
+      date: '2024-10-14',
+      icon: Icons.remove_red_eye,
+      description: 'Revisar sistema circulatório e suas funções.',
     ),
     CardItem(
-      title: 'Event 3',
-      date: '2024-10-10',
-      icon: Icons.event,
-      description: 'Description for Event 3.',
+      title: 'Praticar Física',
+      date: '2024-10-15',
+      icon: Icons.remove_red_eye,
+      description: 'Resolver problemas de cinemática.',
     ),
   ];
 
@@ -76,25 +77,33 @@ class _MetaState extends State<Meta> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: items.length,
-              itemBuilder: (context, index) {
-                final item = items[index];
-                return Card(
-                  margin: EdgeInsets.all(8.0),
-                  child: ExpansionTile(
-                    trailing: Icon(item.icon, size: 40),
-                    title: Text(item.title,
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    subtitle: Text(item.date),
-                    children: <Widget>[
-                      ListTile(
-                        title: Text(item.description),
-                      )
-                    ],
-                  ),
-                );
-              },
-            ),
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  final item = items[index];
+                  return GestureDetector(
+                      onLongPress: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const EditarMeta(),
+                                settings:
+                                    RouteSettings(arguments: items[index])));
+                      },
+                      child: Card(
+                        margin: EdgeInsets.all(8.0),
+                        child: ExpansionTile(
+                          trailing: Icon(item.icon, size: 40),
+                          title: Text(item.title,
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text(item.date),
+                          children: <Widget>[
+                            ListTile(
+                              title: Text(item.description),
+                            )
+                          ],
+                        ),
+                      ));
+                }),
           )
         ],
       ),

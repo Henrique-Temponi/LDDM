@@ -48,7 +48,7 @@ class _InicioState extends State<Inicio> {
     return Scaffold(
         appBar: AppBar(
           title: const Center(child: Text("WorthStudy")),
-          backgroundColor: Colors.red,
+          backgroundColor: const Color.fromARGB(120, 59, 178, 115),
           shadowColor: Theme.of(context).colorScheme.shadow,
         ),
         body: _telas[_index],
@@ -58,7 +58,6 @@ class _InicioState extends State<Inicio> {
               topLeft: Radius.circular(30),
               topRight: Radius.circular(30),
             ),
-            color: Colors.red,
           ),
           child: ClipRRect(
             borderRadius: const BorderRadius.only(
@@ -74,23 +73,23 @@ class _InicioState extends State<Inicio> {
                 BottomNavigationBarItem(
                     icon: Icon(Icons.home),
                     label: "Inicio",
-                    backgroundColor: Color.fromARGB(255, 208, 223, 9)),
+                    backgroundColor: Color.fromARGB(255, 124, 128, 155)),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.track_changes),
                     label: "Metas",
-                    backgroundColor: Color.fromARGB(255, 212, 39, 8)),
+                    backgroundColor: Color.fromARGB(255, 169, 175, 209)),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.add_circle),
                     label: "Adicionar Meta",
-                    backgroundColor: Color.fromARGB(255, 35, 156, 5)),
+                    backgroundColor: Color.fromARGB(255, 161, 205, 244)),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.schedule),
                     label: "Pomodoro",
-                    backgroundColor: Color.fromARGB(255, 35, 156, 5)),
+                    backgroundColor: Color.fromARGB(255, 173, 169, 183)),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.person),
                     label: "Perfil",
-                    backgroundColor: Color.fromARGB(255, 6, 50, 194))
+                    backgroundColor: Color.fromARGB(255, 39, 62, 71))
               ],
             ),
           ),

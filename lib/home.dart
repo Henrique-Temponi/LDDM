@@ -14,26 +14,26 @@ class _HomeState extends State<Home> {
     CardItem(
       title: 'Estudar Geografia',
       date: '2024-10-08',
-      icon: Icons.abc,
-      description: 'Description for Event 1.',
+      icon: Icons.remove_red_eye,
+      description: 'Estudar Geografia para a prova',
     ),
     CardItem(
-      title: 'Event 2',
-      date: '2024-10-09',
-      icon: Icons.event,
-      description: 'Description for Event 2.',
+      title: 'Trabalho LDDM',
+      date: '2024-11-09',
+      icon: Icons.remove_red_eye,
+      description: 'Fazer trabalho de LDDM.',
     ),
     CardItem(
-      title: 'Event 3',
-      date: '2024-10-10',
-      icon: Icons.event,
-      description: 'Description for Event 3.',
+      title: 'Grafos',
+      date: '2024-10-1',
+      icon: Icons.remove_red_eye,
+      description: 'Implementar o trabalho de grafos',
     ),
     CardItem(
-      title: 'Event 3',
-      date: '2024-10-10',
-      icon: Icons.event,
-      description: 'Description for Event 3.',
+      title: 'Estatistica',
+      date: '2024-10-31',
+      icon: Icons.remove_red_eye,
+      description: 'Estudar estatistica',
     )
   ];
 
@@ -69,9 +69,8 @@ class _HomeState extends State<Home> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => EditarMeta(
-                                  metaDados: item,
-                                )));
+                            builder: (context) => const EditarMeta(),
+                            settings: RouteSettings(arguments: items[index])));
                   },
                   child: Card(
                     margin: EdgeInsets.all(8.0),
