@@ -19,7 +19,7 @@ class _CadastroState extends State<Cadastro> {
           const Padding(
             padding: EdgeInsets.all(16.0),
             child: Text(
-              'Adicionar Meta',
+              'Fazer log in',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),

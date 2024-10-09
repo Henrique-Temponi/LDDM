@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lddm/editar_meta.dart';
 import 'card_item.dart';
 
 class Home extends StatefulWidget {
@@ -40,14 +41,14 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.grey[300], // Gray background color
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         children: [
           const Padding(
               padding: EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
+                children: <Widget>[
                   Text(
                     'Bem-vindo de volta!',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -63,18 +64,28 @@ class _HomeState extends State<Home> {
               itemCount: items.length,
               itemBuilder: (context, index) {
                 final item = items[index];
-                return Card(
-                  margin: EdgeInsets.all(8.0),
-                  child: ExpansionTile(
-                    trailing: Icon(item.icon, size: 40),
-                    title: Text(item.title,
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    subtitle: Text(item.date),
-                    children: <Widget>[
-                      ListTile(
-                        title: Text(item.description),
-                      )
-                    ],
+                return GestureDetector(
+                  onLongPress: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditarMeta(
+                                  metaDados: item,
+                                )));
+                  },
+                  child: Card(
+                    margin: EdgeInsets.all(8.0),
+                    child: ExpansionTile(
+                      trailing: Icon(item.icon, size: 40),
+                      title: Text(item.title,
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      subtitle: Text(item.date),
+                      children: <Widget>[
+                        ListTile(
+                          title: Text(item.description),
+                        )
+                      ],
+                    ),
                   ),
                 );
               },
