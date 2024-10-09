@@ -3,7 +3,7 @@ import 'package:lddm/cadastro.dart';
 import 'package:lddm/home.dart';
 import 'package:lddm/metas.dart';
 import 'package:lddm/sobre.dart';
-import 'CustomMetaListItem.dart';
+import 'adicionar_meta.dart';
 
 void main() => runApp(const InicioApp());
 
@@ -32,9 +32,9 @@ class _InicioState extends State<Inicio> {
   static const List<Widget> _telas = <Widget>[
     Home(),
     Meta(),
-    Cadastro(),
+    AdicionarMeta(),
     Sobre(),
-    Home(),
+    Cadastro(),
   ];
 
   void onTabTapped(int index) {

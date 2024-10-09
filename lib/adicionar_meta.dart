@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Cadastro extends StatefulWidget {
-  const Cadastro({super.key});
+class AdicionarMeta extends StatefulWidget {
+  const AdicionarMeta({super.key});
 
   @override
-  _CadastroState createState() => _CadastroState();
+  _AdicionarMetaState createState() => _AdicionarMetaState();
 }
 
-class _CadastroState extends State<Cadastro> {
+class _AdicionarMetaState extends State<AdicionarMeta> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,16 +28,23 @@ class _CadastroState extends State<Cadastro> {
               child: Expanded(
                   child: TextField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(), labelText: "Usario"),
+                    border: OutlineInputBorder(), labelText: "Nome da meta"),
               ))),
           const Padding(
               padding: EdgeInsets.all(8.0),
               child: SizedBox(
                   width: 400,
                   child: TextField(
-                    obscureText: true,
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: "Senha"),
+                        border: OutlineInputBorder(), labelText: "Descricao"),
+                  ))),
+          const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: SizedBox(
+                  width: 400,
+                  child: TextField(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(), labelText: "Data"),
                   ))),
           ElevatedButton(
               onPressed: () {

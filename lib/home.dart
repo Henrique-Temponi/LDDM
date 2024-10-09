@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'card_item.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -32,31 +33,7 @@ class _HomeState extends State<Home> {
       date: '2024-10-10',
       icon: Icons.event,
       description: 'Description for Event 3.',
-    ),
-    CardItem(
-      title: 'Event 3',
-      date: '2024-10-10',
-      icon: Icons.event,
-      description: 'Description for Event 3.',
-    ),
-    CardItem(
-      title: 'Event 3',
-      date: '2024-10-10',
-      icon: Icons.event,
-      description: 'Description for Event 3.',
-    ),
-    CardItem(
-      title: 'Event 3',
-      date: '2024-10-10',
-      icon: Icons.event,
-      description: 'Description for Event 3.',
-    ),
-    CardItem(
-      title: 'Event 3',
-      date: '2024-10-10',
-      icon: Icons.event,
-      description: 'Description for Event 3.',
-    ),
+    )
   ];
 
   @override
@@ -107,18 +84,4 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-}
-
-class CardItem {
-  final String title;
-  final String date;
-  final IconData icon;
-  final String description;
-
-  CardItem({
-    required this.title,
-    required this.date,
-    required this.icon,
-    required this.description,
-  });
 }
