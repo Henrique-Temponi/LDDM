@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lddm/sql_helper.dart';
 
 class AdicionarMeta extends StatefulWidget {
   const AdicionarMeta({super.key});
@@ -8,6 +9,10 @@ class AdicionarMeta extends StatefulWidget {
 }
 
 class _AdicionarMetaState extends State<AdicionarMeta> {
+  final TextEditingController _nomeController = TextEditingController();
+  final TextEditingController _descriController = TextEditingController();
+  final TextEditingController _dataController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,27 +28,31 @@ class _AdicionarMetaState extends State<AdicionarMeta> {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
-          const Padding(
-              padding: EdgeInsets.all(8.0),
+          Padding(
+              padding: const EdgeInsets.all(8.0),
               child: TextField(
-                decoration: InputDecoration(
+                controller: _nomeController,
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(), labelText: "Nome da meta"),
               )),
-          const Padding(
-              padding: EdgeInsets.all(8.0),
+          Padding(
+              padding: const EdgeInsets.all(8.0),
               child: TextField(
-                decoration: InputDecoration(
+                controller: _descriController,
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(), labelText: "Descricao"),
               )),
-          const Padding(
-              padding: EdgeInsets.all(8.0),
+          Padding(
+              padding: const EdgeInsets.all(8.0),
               child: TextField(
-                decoration: InputDecoration(
+                controller: _dataController,
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(), labelText: "Data"),
               )),
           ElevatedButton(
-              onPressed: () {
-                print("Ok");
+              onPressed: () async {
+                await SQLHelper.adicionarMeta(_nomeController.text,
+                    _descriController.text, _dataController.text, 0xe51c);
               },
               child: const Text("Entrar"))
         ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lddm/editar_meta.dart';
-import 'card_item.dart';
+import 'package:lddm/sql_helper.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -10,32 +10,20 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final List<CardItem> items = [
-    CardItem(
-      title: 'Estudar Geografia',
-      date: '2024-10-08',
-      icon: Icons.remove_red_eye,
-      description: 'Estudar Geografia para a prova',
-    ),
-    CardItem(
-      title: 'Trabalho LDDM',
-      date: '2024-11-09',
-      icon: Icons.remove_red_eye,
-      description: 'Fazer trabalho de LDDM.',
-    ),
-    CardItem(
-      title: 'Grafos',
-      date: '2024-10-1',
-      icon: Icons.remove_red_eye,
-      description: 'Implementar o trabalho de grafos',
-    ),
-    CardItem(
-      title: 'Estatistica',
-      date: '2024-10-31',
-      icon: Icons.remove_red_eye,
-      description: 'Estudar estatistica',
-    )
-  ];
+  List<Map<String, dynamic>> _list = [];
+
+  void _atualizaMetas() async {
+    final data = await SQLHelper.pegaMetas();
+    setState(() {
+      _list = data;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _atualizaMetas();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,27 +49,29 @@ class _HomeState extends State<Home> {
               )),
           Expanded(
             child: ListView.builder(
-              itemCount: items.length,
+              itemCount: _list.length,
               itemBuilder: (context, index) {
-                final item = items[index];
+                final item = _list[index];
                 return GestureDetector(
                   onLongPress: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const EditarMeta(),
-                            settings: RouteSettings(arguments: items[index])));
+                            settings: RouteSettings(arguments: _list[index])));
                   },
                   child: Card(
-                    margin: EdgeInsets.all(8.0),
+                    margin: const EdgeInsets.all(8.0),
                     child: ExpansionTile(
-                      trailing: Icon(item.icon, size: 40),
-                      title: Text(item.title,
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      subtitle: Text(item.date),
+                      trailing: Icon(
+                          IconData(item['icone'], fontFamily: 'MaterialIcons'),
+                          size: 40),
+                      title: Text(item['nome'],
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                      subtitle: Text(item['data']),
                       children: <Widget>[
                         ListTile(
-                          title: Text(item.description),
+                          title: Text(item['descricao']),
                         )
                       ],
                     ),

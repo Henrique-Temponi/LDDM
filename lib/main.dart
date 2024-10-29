@@ -3,9 +3,16 @@ import 'package:lddm/cadastro.dart';
 import 'package:lddm/home.dart';
 import 'package:lddm/metas.dart';
 import 'package:lddm/sobre.dart';
+import 'package:lddm/sql_helper.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'adicionar_meta.dart';
 
-void main() => runApp(const InicioApp());
+void main() {
+  sqfliteFfiInit();
+  databaseFactory = databaseFactoryFfi;
+
+  runApp(const InicioApp());
+}
 
 //test
 class InicioApp extends StatelessWidget {
@@ -47,9 +54,21 @@ class _InicioState extends State<Inicio> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Center(child: Text("WorthStudy")),
+          // title: const Center(child: Text("WorthStudy")),
+          title: const Text("WorthStudy"),
           backgroundColor: const Color.fromARGB(120, 59, 178, 115),
           shadowColor: Theme.of(context).colorScheme.shadow,
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              ListTile(
+                  leading: const Icon(Icons.data_array),
+                  title: const Text("Deletar banco de dados"),
+                  onTap: () => SQLHelper.deletarDatbase(inMemoryDatabasePath))
+            ],
+          ),
         ),
         body: _telas[_index],
         bottomNavigationBar: Container(
