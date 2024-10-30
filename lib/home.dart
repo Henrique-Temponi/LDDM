@@ -32,18 +32,19 @@ class _HomeState extends State<Home> {
       padding: const EdgeInsets.all(20),
       child: Column(
         children: [
-          const Padding(
-              padding: EdgeInsets.all(16.0),
+          Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     'Bem-vindo de volta!',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Voce tem x tarfas para esta semana',
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    'Voce tem ${_list.length} tarfas para esta semana',
+                    style: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.bold),
                   ),
                 ],
               )),

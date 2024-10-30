@@ -51,8 +51,18 @@ class _AdicionarMetaState extends State<AdicionarMeta> {
               )),
           ElevatedButton(
               onPressed: () async {
-                await SQLHelper.adicionarMeta(_nomeController.text,
+                int id = await SQLHelper.adicionarMeta(_nomeController.text,
                     _descriController.text, _dataController.text, 0xe51c);
+                String resultado = "";
+                if (id != 0) {
+                  resultado = "Meta inserida com sucesso";
+                } else {
+                  resultado = "Erro ao inseri Meta";
+                }
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(resultado)));
+                }
               },
               child: const Text("Entrar"))
         ],
