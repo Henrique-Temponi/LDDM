@@ -54,12 +54,15 @@ class _HomeState extends State<Home> {
               itemBuilder: (context, index) {
                 final item = _list[index];
                 return GestureDetector(
-                  onLongPress: () {
+                  onDoubleTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const EditarMeta(),
                             settings: RouteSettings(arguments: _list[index])));
+                  },
+                  onLongPress: () {
+                    //TODO: fazer a exclusao
                   },
                   child: Card(
                     margin: const EdgeInsets.all(8.0),

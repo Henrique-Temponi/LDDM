@@ -15,10 +15,11 @@ class _EditarMetaState extends State<EditarMeta> {
 
   @override
   Widget build(BuildContext context) {
-    final todo = ModalRoute.of(context)!.settings.arguments as CardItem;
-    titleController.text = todo.title;
-    desController.text = todo.description;
-    dateController.text = todo.date;
+    final todo =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    titleController.text = todo['nome'];
+    desController.text = todo['descricao'];
+    dateController.text = todo['data'];
 
     return Scaffold(
       appBar: AppBar(

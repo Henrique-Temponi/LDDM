@@ -14,6 +14,14 @@ class _AdicionarMetaState extends State<AdicionarMeta> {
   final TextEditingController _dataController = TextEditingController();
 
   @override
+  void dispose() {
+    _nomeController.dispose();
+    _descriController.dispose();
+    _dataController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.grey[300],
@@ -56,8 +64,11 @@ class _AdicionarMetaState extends State<AdicionarMeta> {
                 String resultado = "";
                 if (id != 0) {
                   resultado = "Meta inserida com sucesso";
+                  _nomeController.text = "";
+                  _dataController.text = "";
+                  _descriController.text = "";
                 } else {
-                  resultado = "Erro ao inseri Meta";
+                  resultado = "Erro ao inserir Meta";
                 }
                 if (context.mounted) {
                   ScaffoldMessenger.of(context)
