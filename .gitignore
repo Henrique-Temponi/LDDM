@@ -16,6 +16,7 @@ doc/api/
 
 # misc files
 parafazer.txt
+dados.dart
 
 # Avoid committing generated Javascript files:
 *.dart.js

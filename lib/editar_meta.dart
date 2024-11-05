@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lddm/card_item.dart';
+import 'package:lddm/metas_form.dart';
 
 class EditarMeta extends StatefulWidget {
   const EditarMeta({super.key});
@@ -14,12 +15,20 @@ class _EditarMetaState extends State<EditarMeta> {
   var dateController = TextEditingController();
 
   @override
+  void dispose() {
+    titleController.dispose();
+    desController.dispose();
+    dateController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final todo =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     titleController.text = todo['nome'];
     desController.text = todo['descricao'];
-    dateController.text = todo['data'];
+    // dateController.text = todo['data'];
 
     return Scaffold(
       appBar: AppBar(
@@ -31,34 +40,11 @@ class _EditarMetaState extends State<EditarMeta> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text(
-                'Editar Meta',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), labelText: "Nome da meta"),
-                  controller: titleController,
-                )),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), labelText: "Descricao"),
-                  controller: desController,
-                )),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), labelText: "Data"),
-                  controller: dateController,
-                )),
+            MetasForm(
+                nomeController: titleController,
+                descriController: desController,
+                dataController: dateController,
+                editText: "Editar Metas"),
             ElevatedButton(
                 onPressed: () {
                   print("Ok");

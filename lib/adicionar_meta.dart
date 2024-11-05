@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lddm/metas_form.dart';
 import 'package:lddm/sql_helper.dart';
 
 class AdicionarMeta extends StatefulWidget {
@@ -12,23 +13,6 @@ class _AdicionarMetaState extends State<AdicionarMeta> {
   final TextEditingController _nomeController = TextEditingController();
   final TextEditingController _descriController = TextEditingController();
   final TextEditingController _dataController = TextEditingController();
-
-  DateTime selectedDate = DateTime.now();
-
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-        _dataController.text =
-            "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}";
-      });
-    }
-  }
 
   @override
   void dispose() {
@@ -46,43 +30,12 @@ class _AdicionarMetaState extends State<AdicionarMeta> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              'Adicionar Meta',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
+          MetasForm(
+            nomeController: _nomeController,
+            descriController: _descriController,
+            dataController: _dataController,
+            editText: "Adicionar Meta",
           ),
-          Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller: _nomeController,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: "Nome da meta"),
-              )),
-          Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller: _descriController,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: "Descricao"),
-              )),
-          Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Expanded(
-                        child: TextField(
-                            controller: _dataController,
-                            decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: "Data"))),
-                    const SizedBox(width: 10),
-                    IconButton(
-                        onPressed: () => {_selectDate(context)},
-                        icon: const Icon(Icons.calendar_month))
-                  ])),
           ElevatedButton(
               onPressed: () async {
                 int id = await SQLHelper.adicionarMeta(_nomeController.text,
@@ -101,7 +54,7 @@ class _AdicionarMetaState extends State<AdicionarMeta> {
                       .showSnackBar(SnackBar(content: Text(resultado)));
                 }
               },
-              child: const Text("Entrar"))
+              child: const Text("Adicionar Meta"))
         ],
       ),
     );
