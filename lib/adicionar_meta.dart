@@ -13,6 +13,23 @@ class _AdicionarMetaState extends State<AdicionarMeta> {
   final TextEditingController _descriController = TextEditingController();
   final TextEditingController _dataController = TextEditingController();
 
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+        _dataController.text =
+            "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}";
+      });
+    }
+  }
+
   @override
   void dispose() {
     _nomeController.dispose();
@@ -52,11 +69,20 @@ class _AdicionarMetaState extends State<AdicionarMeta> {
               )),
           Padding(
               padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller: _dataController,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: "Data"),
-              )),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                        child: TextField(
+                            controller: _dataController,
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: "Data"))),
+                    const SizedBox(width: 10),
+                    IconButton(
+                        onPressed: () => {_selectDate(context)},
+                        icon: const Icon(Icons.calendar_month))
+                  ])),
           ElevatedButton(
               onPressed: () async {
                 int id = await SQLHelper.adicionarMeta(_nomeController.text,

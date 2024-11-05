@@ -66,7 +66,7 @@ class _InicioState extends State<Inicio> {
               ListTile(
                   leading: const Icon(Icons.data_array),
                   title: const Text("Deletar banco de dados"),
-                  onTap: () => SQLHelper.deletarDatbase(inMemoryDatabasePath))
+                  onTap: () => SQLHelper.deletarTabelas())
             ],
           ),
         ),

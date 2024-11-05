@@ -76,7 +76,8 @@ class SQLHelper {
     }
   }
 
-  static Future<void> deletarDatbase(String path) async {
-    databaseFactoryFfi.deleteDatabase(path);
+  static Future<void> deletarTabelas() async {
+    final db = await SQLHelper.db();
+    int changes = await db.rawDelete("DELETE FROM metas");
   }
 }
