@@ -67,10 +67,10 @@ class SQLHelper {
     return result;
   }
 
-  static Future<void> apagaProduto(int id) async {
+  static Future<void> apagaMeta(int id) async {
     final db = await SQLHelper.db();
     try {
-      await db.delete("produtos", where: "id = ?", whereArgs: [id]);
+      await db.delete("metas", where: "id = ?", whereArgs: [id]);
     } catch (err) {
       debugPrint("Erro ao apagar o item item: $err");
     }

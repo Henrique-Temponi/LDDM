@@ -66,7 +66,25 @@ class _HomeState extends State<Home> {
                     });
                   },
                   onLongPress: () {
-                    //TODO: fazer a exclusao
+                    showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                              title:
+                                  const Text("Gostaria de deletar essa meta?"),
+                              actions: <Widget>[
+                                TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: const Text('Voltar')),
+                                TextButton(
+                                    onPressed: () {
+                                      print("delete");
+                                      SQLHelper.apagaMeta(_list[index]['id']);
+                                      _atualizaMetas();
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('Deletar')),
+                              ],
+                            ));
                   },
                   child: Card(
                     margin: const EdgeInsets.all(8.0),
