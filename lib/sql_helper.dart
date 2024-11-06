@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart' as sql;
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 class SQLHelper {
   static Future<void> criaTabela(sql.Database database) async {
@@ -45,6 +44,17 @@ class SQLHelper {
     return db.query('metas', orderBy: "id");
   }
 
+  // static Future<List<Map<String, dynamic>>> pegarMetasPorMes(
+  //     String month) async {
+  //   var metas = await pegaMetas();
+  //   Future<List<Map<String, dynamic>>> aux = ;
+
+  //   for (var meta in metas) {
+  //     String auxmonth = meta['data'].split('/');
+  //     if (auxmonth == month) {aux.add(meta);}
+  //   }
+  // }
+
   static Future<List<Map<String, dynamic>>> pegaUmProduto(int id) async {
     final db = await SQLHelper.db();
     return db.query('produtos', where: "id = ?", whereArgs: [id], limit: 1);
@@ -78,6 +88,7 @@ class SQLHelper {
 
   static Future<void> deletarTabelas() async {
     final db = await SQLHelper.db();
+    // ignore: unused_local_variable
     int changes = await db.rawDelete("DELETE FROM metas");
   }
 }

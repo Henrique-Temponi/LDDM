@@ -13,9 +13,19 @@ class _HomeState extends State<Home> {
   List<Map<String, dynamic>> _list = [];
 
   void _atualizaMetas() async {
-    final data = await SQLHelper.pegaMetas();
+    var data = await SQLHelper.pegaMetas();
+    List<Map<String, dynamic>> aux = [];
+    List<String> auxMonth = [];
+
+    for (var meta in data) {
+      auxMonth = meta['data'].split("/");
+      if (auxMonth[1] == '${DateTime.now().month}') {
+        aux.add(meta);
+      }
+    }
+
     setState(() {
-      _list = data;
+      _list = aux;
     });
   }
 

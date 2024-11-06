@@ -65,7 +65,7 @@ class _MetaState extends State<Meta> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.grey[300], // Gray background color
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         children: [
           const Padding(
