@@ -6,12 +6,18 @@ class MetasForm extends StatefulWidget {
       required this.nomeController,
       required this.descriController,
       required this.dataController,
-      required this.editText});
+      required this.editText,
+      this.currentName,
+      this.currentDescri,
+      this.currentDate});
 
   final TextEditingController nomeController;
   final TextEditingController descriController;
   final TextEditingController dataController;
   final String editText;
+  final String? currentName;
+  final String? currentDescri;
+  final String? currentDate;
 
   @override
   State<MetasForm> createState() => _MetasFormState();
@@ -19,6 +25,14 @@ class MetasForm extends StatefulWidget {
 
 class _MetasFormState extends State<MetasForm> {
   DateTime selectedDate = DateTime.now();
+
+  void setTimeDate() {
+    if (widget.currentDate != "") {
+      List<String> date = widget.currentDate!.split("/");
+      selectedDate =
+          DateTime(int.parse(date[2]), int.parse(date[1]), int.parse(date[0]));
+    }
+  }
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -30,11 +44,21 @@ class _MetasFormState extends State<MetasForm> {
       setState(() {
         selectedDate = picked;
         print(selectedDate.toString());
+        widget.dataController.text = "";
         widget.dataController.text =
             "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}";
         print(widget.dataController.text);
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    widget.nomeController.text = widget.currentName!;
+    widget.descriController.text = widget.currentDescri!;
+    widget.dataController.text = widget.currentDate!;
+    setTimeDate();
   }
 
   @override

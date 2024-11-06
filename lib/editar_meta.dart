@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lddm/card_item.dart';
 import 'package:lddm/metas_form.dart';
 
 class EditarMeta extends StatefulWidget {
@@ -26,9 +25,9 @@ class _EditarMetaState extends State<EditarMeta> {
   Widget build(BuildContext context) {
     final todo =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-    titleController.text = todo['nome'];
-    desController.text = todo['descricao'];
-    // dateController.text = todo['data'];
+    // titleController.text = todo['nome'];
+    // desController.text = todo['descricao'];
+    // // dateController.text = todo['data'];
 
     return Scaffold(
       appBar: AppBar(
@@ -41,10 +40,14 @@ class _EditarMetaState extends State<EditarMeta> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             MetasForm(
-                nomeController: titleController,
-                descriController: desController,
-                dataController: dateController,
-                editText: "Editar Metas"),
+              nomeController: titleController,
+              descriController: desController,
+              dataController: dateController,
+              editText: "Editar Metas",
+              currentName: todo['nome'],
+              currentDescri: todo['descricao'],
+              currentDate: todo['data'],
+            ),
             ElevatedButton(
                 onPressed: () {
                   print("Ok");
