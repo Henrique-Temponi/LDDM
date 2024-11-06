@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lddm/global/global_values.dart';
 import 'package:lddm/metas_form.dart';
 import 'package:lddm/sql_helper.dart';
 
@@ -38,8 +39,11 @@ class _AdicionarMetaState extends State<AdicionarMeta> {
           ),
           ElevatedButton(
               onPressed: () async {
-                int id = await SQLHelper.adicionarMeta(_nomeController.text,
-                    _descriController.text, _dataController.text, 0xe51c);
+                int id = await SQLHelper.adicionarMeta(
+                    _nomeController.text,
+                    _descriController.text,
+                    _dataController.text,
+                    GlobalValues.iconValue);
                 String resultado = "";
                 if (id != 0) {
                   resultado = "Meta inserida com sucesso";

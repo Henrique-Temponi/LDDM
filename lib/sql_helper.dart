@@ -50,20 +50,20 @@ class SQLHelper {
     return db.query('produtos', where: "id = ?", whereArgs: [id], limit: 1);
   }
 
-  static Future<int> atualizaProduto(
-      int id, String nome, double valor, int ean, int qte) async {
+  static Future<int> atualizaMeta(
+      int id, String nome, String descricao, String data, int iconData) async {
     final db = await SQLHelper.db();
 
     final dados = {
       'nome': nome,
-      'valor': valor,
-      'ean': ean,
-      'qte': qte,
+      'descricao': descricao,
+      'data': data,
+      'icone': iconData,
       'createdAt': DateTime.now().toString()
     };
 
     final result =
-        await db.update('produtos', dados, where: "id = ?", whereArgs: [id]);
+        await db.update('metas', dados, where: "id = ?", whereArgs: [id]);
     return result;
   }
 

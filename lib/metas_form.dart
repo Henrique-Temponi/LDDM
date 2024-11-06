@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 class MetasForm extends StatefulWidget {
   const MetasForm(
       {super.key,
+      this.id,
       required this.nomeController,
       required this.descriController,
       required this.dataController,
       required this.editText,
-      this.currentName,
-      this.currentDescri,
-      this.currentDate});
+      this.currentName = "",
+      this.currentDescri = "",
+      this.currentDate = ""});
 
+  final int? id;
   final TextEditingController nomeController;
   final TextEditingController descriController;
   final TextEditingController dataController;

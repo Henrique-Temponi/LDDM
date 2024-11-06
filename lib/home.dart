@@ -56,10 +56,14 @@ class _HomeState extends State<Home> {
                 return GestureDetector(
                   onDoubleTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const EditarMeta(),
-                            settings: RouteSettings(arguments: _list[index])));
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const EditarMeta(),
+                                settings:
+                                    RouteSettings(arguments: _list[index])))
+                        .then((value) {
+                      _atualizaMetas();
+                    });
                   },
                   onLongPress: () {
                     //TODO: fazer a exclusao

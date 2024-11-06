@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lddm/global/global_values.dart';
 import 'package:lddm/metas_form.dart';
+import 'package:lddm/sql_helper.dart';
 
 class EditarMeta extends StatefulWidget {
   const EditarMeta({super.key});
@@ -49,10 +51,20 @@ class _EditarMetaState extends State<EditarMeta> {
               currentDate: todo['data'],
             ),
             ElevatedButton(
-                onPressed: () {
-                  print("Ok");
+                onPressed: () async {
+                  int resultado = await SQLHelper.atualizaMeta(
+                      todo['id'],
+                      titleController.text,
+                      desController.text,
+                      dateController.text,
+                      GlobalValues.iconValue);
+
+                  if (resultado != 0 && context.mounted) {
+                    Navigator.pop(context);
+                  }
+                  // print();
                 },
-                child: const Text("Entrar"))
+                child: const Text("Editar Meta"))
           ],
         ),
       ),
