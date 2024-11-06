@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lddm/cadastro.dart';
+import 'package:lddm/global/global_values.dart';
 import 'package:lddm/home.dart';
 import 'package:lddm/metas.dart';
-import 'package:lddm/sobre.dart';
+import 'package:lddm/pomodoro.dart';
 import 'package:lddm/sql_helper.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'adicionar_meta.dart';
@@ -40,7 +41,7 @@ class _InicioState extends State<Inicio> {
     Home(),
     Meta(),
     AdicionarMeta(),
-    Sobre(),
+    Pomodoro(),
     Cadastro(),
   ];
 
@@ -56,7 +57,7 @@ class _InicioState extends State<Inicio> {
         appBar: AppBar(
           // title: const Center(child: Text("WorthStudy")),
           title: const Text("WorthStudy"),
-          backgroundColor: const Color.fromARGB(120, 59, 178, 115),
+          backgroundColor: GlobalValues.corHeaderPrincipal,
           shadowColor: Theme.of(context).colorScheme.shadow,
         ),
         drawer: Drawer(
@@ -92,23 +93,23 @@ class _InicioState extends State<Inicio> {
                 BottomNavigationBarItem(
                     icon: Icon(Icons.home),
                     label: "Inicio",
-                    backgroundColor: Color.fromARGB(255, 124, 128, 155)),
+                    backgroundColor: GlobalValues.corBottomNavHome),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.track_changes),
                     label: "Metas",
-                    backgroundColor: Color.fromARGB(255, 169, 175, 209)),
+                    backgroundColor: GlobalValues.corBottomNavMetas),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.add_circle),
                     label: "Adicionar Meta",
-                    backgroundColor: Color.fromARGB(255, 161, 205, 244)),
+                    backgroundColor: GlobalValues.corBottomNavAddMeta),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.schedule),
                     label: "Pomodoro",
-                    backgroundColor: Color.fromARGB(255, 173, 169, 183)),
+                    backgroundColor: GlobalValues.corBottomNavPomodoro),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.person),
                     label: "Perfil",
-                    backgroundColor: Color.fromARGB(255, 39, 62, 71))
+                    backgroundColor: GlobalValues.corBottomNavPerfil)
               ],
             ),
           ),
