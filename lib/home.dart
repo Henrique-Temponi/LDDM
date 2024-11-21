@@ -12,14 +12,34 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<Map<String, dynamic>> _list = [];
 
+  bool verificarDataRange(int dataAtual, int dataInicioSemana) {
+    var resultado = false;
+    var _list = List.generate(7, (i) => i + dataInicioSemana);
+
+    for (var e in _list) {
+      if (e == dataAtual) {
+        resultado = true;
+      }
+    }
+
+    return resultado;
+  }
+
   void _atualizaMetas() async {
     var data = await SQLHelper.pegaMetas();
+    var semanaAtual = DateTime.now().day - DateTime.now().weekday + 1;
+
+    //pegar o dia atual e subtrair pelo o numero de dias apartir da segunda.
+
     List<Map<String, dynamic>> aux = [];
     List<String> auxMonth = [];
 
+    if (data.isEmpty) return;
+
     for (var meta in data) {
       auxMonth = meta['data'].split("/");
-      if (auxMonth[1] == '${DateTime.now().month}') {
+      if (auxMonth[1] == '${DateTime.now().month}' &&
+          verificarDataRange(int.parse(auxMonth[0]), semanaAtual)) {
         aux.add(meta);
       }
     }
