@@ -27,6 +27,14 @@ class _HomeState extends State<Home> {
 
   void _atualizaMetas() async {
     var data = await SQLHelper.pegaMetas();
+
+    print("is empty");
+    print(data);
+
+    // if (data.isEmpty) {
+    //   data = await SQLHelper.pegarMetasFirebase();
+    // }
+
     var semanaAtual = DateTime.now().day - DateTime.now().weekday + 1;
 
     //pegar o dia atual e subtrair pelo o numero de dias apartir da segunda.

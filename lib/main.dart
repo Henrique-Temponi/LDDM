@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lddm/cadastro.dart';
 import 'package:lddm/global/global_values.dart';
@@ -6,11 +7,26 @@ import 'package:lddm/metas.dart';
 import 'package:lddm/pomodoro.dart';
 import 'package:lddm/sql_helper.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 import 'adicionar_meta.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
-  sqfliteFfiInit();
-  databaseFactory = databaseFactoryFfi;
+void main() async {
+  // sqfliteFfiInit();
+  // databaseFactory = databaseFactoryFfi;
+
+  var path = '/my/db/path';
+  if (kIsWeb) {
+    // Change default factory on the web
+    databaseFactory = databaseFactoryFfiWeb;
+    path = 'my_web_web.db';
+  }
+
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
 
   runApp(const InicioApp());
 }
@@ -41,7 +57,7 @@ class _InicioState extends State<Inicio> {
     Home(),
     Meta(),
     AdicionarMeta(),
-    Pomodoro(),
+    // Pomodoro(),
     Cadastro(),
   ];
 
@@ -67,7 +83,11 @@ class _InicioState extends State<Inicio> {
               ListTile(
                   leading: const Icon(Icons.data_array),
                   title: const Text("Deletar banco de dados"),
-                  onTap: () => SQLHelper.deletarTabelas())
+                  onTap: () => SQLHelper.deletarTabelas()),
+              ListTile(
+                  leading: const Icon(Icons.data_array),
+                  title: const Text("Sincronizar dados"),
+                  onTap: () => SQLHelper.sincronizarDadosFirebase())
             ],
           ),
         ),

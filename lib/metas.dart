@@ -14,6 +14,11 @@ class _MetaState extends State<Meta> {
 
   void _atualizaMetas() async {
     var data = await SQLHelper.pegaMetas();
+
+    if (data.isEmpty) {
+      data = await SQLHelper.pegarMetasFirebase();
+    }
+
     setState(() {
       _lista = data;
     });

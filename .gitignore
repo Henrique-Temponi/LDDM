@@ -29,6 +29,13 @@ dados.dart
 
 .flutter-plugins
 .flutter-plugins-dependencies
+firebase_options.dart
+.firebaserc
+firebase.json
+firestore.indexes.json
+firestore.rules
+web/sqflite_sw.js
+web/sqlite3.wasm
 
 
 # Do not remove or rename entries in this file, only add new ones

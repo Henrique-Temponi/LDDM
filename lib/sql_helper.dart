@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:lddm/global/global_values.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 
 class SQLHelper {
@@ -25,7 +28,8 @@ class SQLHelper {
   }
 
   static Future<int> adicionarMeta(
-      String nome, String descricao, String data, int icone) async {
+      String nome, String descricao, String data, int icone,
+      {bool addInFirebase = false}) async {
     final db = await SQLHelper.db();
 
     final dados = {
@@ -34,8 +38,19 @@ class SQLHelper {
       'data': data,
       'icone': icone
     };
+
     final id = await db.insert('metas', dados,
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
+
+    if (addInFirebase) {
+      FirebaseFirestore.instance.collection('metas').add({
+        'data': data,
+        'descricao': descricao,
+        'nome': nome,
+        'id': id,
+      });
+    }
+
     return id;
   }
 
@@ -90,5 +105,68 @@ class SQLHelper {
     final db = await SQLHelper.db();
     // ignore: unused_local_variable
     int changes = await db.rawDelete("DELETE FROM metas");
+  }
+
+  static Future<List<Map<String, dynamic>>> pegarMetasFirebase() async {
+    List<Map<String, dynamic>> aux = List.empty(growable: true);
+    var metas = await FirebaseFirestore.instance
+        .collection('metas')
+        .get()
+        .then((querySnapshot) {
+      for (var element in querySnapshot.docs) {
+        print(element.data()['nome']);
+        aux.add({
+          'id': element.data()['id'],
+          'nome': element.data()['nome'],
+          'descricao': element.data()['descricao'],
+          'data': element.data()['data'],
+          'icone': 0xe51c,
+        });
+
+        adicionarMeta(element.data()['nome'], element.data()['descricao'],
+            element.data()['data'], GlobalValues.iconValue,
+            addInFirebase: false);
+      }
+    });
+
+    return aux;
+  }
+
+  static Future<void> sincronizarDadosFirebase() async {
+    List<Map<String, dynamic>> metasAtuais = await pegaMetas();
+    // List<Map<String, dynamic>> metasFireBase = await pegarMetasFirebase();
+    List<Map<String, dynamic>> metasFireBase = List.empty(growable: true);
+    metasFireBase.add({
+      'id': 1,
+    });
+    metasFireBase.add({
+      'id': 2,
+    });
+    metasFireBase.add({
+      'id': 3,
+    });
+    metasFireBase.add({
+      'id': 4,
+    });
+    metasFireBase.add({
+      'id': 5,
+    });
+    metasFireBase.add({
+      'id': 6,
+    });
+
+    if (metasAtuais.length == metasFireBase.length) return;
+
+    if (metasFireBase.length > metasAtuais.length) {
+      for (var elementFB in metasFireBase) {
+        for (var metasDB in metasAtuais) {
+          if (metasDB.values.contains(elementFB['id'])) {
+            print("ok");
+          } else {
+            print("No bueno");
+          }
+        }
+      }
+    }
   }
 }
